@@ -18,6 +18,7 @@ It provides a central place for players, admins, and fans to connect — includi
 
 ## 🧱 Project Structure
 
+```
 root/
 │
 ├── frontend/ # Next.js application
@@ -33,6 +34,7 @@ root/
 └── README.md # This file
 
 Each part of the stack is **fully independent**, making local development and deployment simpler.
+```
 
 ---
 
