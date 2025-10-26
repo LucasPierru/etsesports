@@ -91,14 +91,15 @@ DB_PASSWORD=
 | email | String | Unique email |
 | password | String | Hashed password |
 | role | Enum (`PLAYER`, `ADMIN`, `COACH`) | User role |
-| createdAt | Timestamp | Auto-generated |
+| createdAt | Timestamp | Creation Date |
 | updatedAt | Timestamp | Auto-generated |
+| isActive | Boolean | True |
 
 `Games`
 | Field | Type | Description |
 | --------- | --------- | ------------------- |
 | id | UUID | Primary key |
-| name | String | Team name |
+| name | String | Game name |
 | createdAt | Timestamp | Creation date |
 | updatedAt | Timestamp | Auto-generated |
 

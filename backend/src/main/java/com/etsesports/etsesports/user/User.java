@@ -1,9 +1,12 @@
 package com.etsesports.etsesports.user;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Date;
 
 @Entity
 @Table(name = "\"users\"")
@@ -22,37 +25,39 @@ public class User {
     private String username;
     private String email;
     private String passwordHash;
-    private String bio;
-    private boolean isActive;
-    private LocalDate createdAt;
-    private LocalDate updatedAt;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt;
+
     private LocalDate dob;
+    private boolean isActive;
     @Transient
     private int age;
 
     public User() {
     }
 
-    public User(Long id, String username, String email, String passwordHash, String bio, boolean isActive, LocalDate createdAt, LocalDate updatedAt, LocalDate dob) {
+    public User(Long id, String username, String email, String passwordHash, String bio, boolean isActive, LocalDate dob) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
-        this.bio = bio;
         this.isActive = isActive;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
         this.dob = dob;
     }
 
-    public User(String username, String email, String passwordHash, String bio, boolean isActive, LocalDate createdAt, LocalDate updatedAt, LocalDate dob) {
+    public User(String username, String email, String passwordHash, String bio, boolean isActive, LocalDate dob) {
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
-        this.bio = bio;
         this.isActive = isActive;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
         this.dob = dob;
     }
 
@@ -88,14 +93,6 @@ public class User {
         this.passwordHash = passwordHash;
     }
 
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
     public boolean isActive() {
         return isActive;
     }
@@ -104,20 +101,9 @@ public class User {
         isActive = active;
     }
 
-    public LocalDate getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDate createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDate getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDate updatedAt) {
-        this.updatedAt = updatedAt;
+    @PreUpdate
+    public void setUpdatedAt() {
+        this.updatedAt = new Date();
     }
 
     public LocalDate getDob() {
@@ -143,7 +129,6 @@ public class User {
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
-                ", bio='" + bio + '\'' +
                 ", isActive=" + isActive +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
