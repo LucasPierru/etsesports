@@ -108,6 +108,7 @@ DB_PASSWORD=
 | --------- | --------- | ------------------- |
 | id | UUID | Primary key |
 | name | String | Team name |
+| gameId | UUID | Reference to `Game` |
 | createdAt | Timestamp | Creation date |
 | updatedAt | Timestamp | Auto-generated |
 
