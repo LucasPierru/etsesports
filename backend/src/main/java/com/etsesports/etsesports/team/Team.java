@@ -1,5 +1,6 @@
 package com.etsesports.etsesports.team;
 
+import com.etsesports.etsesports.game.Game;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -23,6 +24,10 @@ public class Team {
     private long id;
     private String name;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "game_id")
+    private Game game;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
@@ -35,12 +40,12 @@ public class Team {
 
     }
 
-    public Team(Long id, String name) {
+    public Team(Long id, String name, Game game) {
         this.id = id;
         this.name = name;
     }
 
-    public Team(String name) {
+    public Team(String name, Game game) {
         this.name = name;
     }
 
