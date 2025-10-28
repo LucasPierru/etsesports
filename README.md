@@ -100,6 +100,7 @@ DB_PASSWORD=
 | --------- | --------- | ------------------- |
 | id | UUID | Primary key |
 | name | String | Game name |
+| teams | List<Team> | Reference to `Team` |
 | createdAt | Timestamp | Creation date |
 | updatedAt | Timestamp | Auto-generated |
 
@@ -108,7 +109,8 @@ DB_PASSWORD=
 | --------- | --------- | ------------------- |
 | id | UUID | Primary key |
 | name | String | Team name |
-| gameId | UUID | Reference to `Game` |
+| game | UUID | Reference to `Game` |
+| players | List<Player> | Reference to `Player` |
 | createdAt | Timestamp | Creation date |
 | updatedAt | Timestamp | Auto-generated |
 
@@ -121,8 +123,9 @@ DB_PASSWORD=
 | lastName | String | Player's last name |
 | dob | Timestamp | Player's date of birth |
 | degree | String | Player's degree |
-| teamId | UUID | Reference to `Team` |
+| team | UUID | Reference to `Team` |
 | role | String | Player role (e.g., “Support”, “ADC”, "Duelist") |
+| isActive | Boolean | True |
 | createdAt | Timestamp | Creation date |
 | updatedAt | Timestamp | Auto-generated |
 
@@ -130,8 +133,8 @@ DB_PASSWORD=
 | Field | Type | Description |
 | ------ | ------ | ------------------------------------ |
 | id | UUID | Primary key |
-| userId | UUID | Reference to `User` |
-| teamId | UUID | Reference to `Team` |
+| user | UUID | Reference to `User` |
+| team | UUID | Reference to `Team` |
 | createdAt | Timestamp | Creation date |
 | updatedAt | Timestamp | Auto-generated |
 
@@ -151,7 +154,7 @@ DB_PASSWORD=
 | id | UUID | Primary key |
 | title | String | Article title |
 | content | Text | Article content |
-| authorId | UUID | Reference to `User` |
+| author | UUID | Reference to `User` |
 | createdAt | Timestamp | Auto-generated |
 | updatedAt | Timestamp | Auto-generated |
 

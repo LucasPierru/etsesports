@@ -5,21 +5,30 @@ import com.etsesports.etsesports.game.GameRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.List;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.annotation.Order;
 
 @Configuration
 public class TeamConfig {
 
     @Bean("teamDataLoader")
+    @DependsOn("gameDataLoader")
+    @Order(2)
     CommandLineRunner commandLineRunner (TeamRepository teamRepository, GameRepository gameRepository) {
         return args -> {
-            long valId = 1;
-            Game valorant = gameRepository.findById(valId).orElseThrow(() -> new IllegalStateException("Game with id " + valId + " does not exist"));;
+            // prefer to use name to lookup game
+            Game valorant = gameRepository.findByName("Valorant")
+                    .orElseThrow(() -> new IllegalStateException("Valorant missing"));
 
-            Team v1 = new Team("Valorant", valorant);
-            Team r1 = new Team("Rocket League", valorant);
-            teamRepository.saveAll(List.of(v1, r1));
+            // idempotent: create only if not exists (name + game)
+            createTeamIfMissing(teamRepository, "Valorant Team 1", valorant);
+            createTeamIfMissing(teamRepository, "Valorant Team 2", valorant);
         };
+    }
+
+    private void createTeamIfMissing(TeamRepository teamRepository, String teamName, Game game) {
+        if (teamRepository.findByNameAndGame(teamName, game).isEmpty()) {
+            teamRepository.save(new Team(teamName, game));
+        }
     }
 }

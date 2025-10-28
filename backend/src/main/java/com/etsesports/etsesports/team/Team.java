@@ -1,14 +1,17 @@
 package com.etsesports.etsesports.team;
 
 import com.etsesports.etsesports.game.Game;
+import com.etsesports.etsesports.player.Player;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "teams")
+@Table(name = "teams", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "game_id"}))
 public class Team {
     @Id
     @SequenceGenerator(
@@ -24,9 +27,12 @@ public class Team {
     private long id;
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "game_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "game_id", nullable = false)
     private Game game;
+
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
+    private List<Player> players = new ArrayList<>();
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -36,6 +42,14 @@ public class Team {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
     public Team() {
 
     }
@@ -43,10 +57,12 @@ public class Team {
     public Team(Long id, String name, Game game) {
         this.id = id;
         this.name = name;
+        this.game = game;
     }
 
     public Team(String name, Game game) {
         this.name = name;
+        this.game = game;
     }
 
     @PreUpdate

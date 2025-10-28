@@ -1,13 +1,16 @@
 package com.etsesports.etsesports.game;
 
+import com.etsesports.etsesports.team.Team;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "games")
+@Table(name = "games", uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
 public class Game {
     @Id
     @SequenceGenerator(
@@ -22,6 +25,8 @@ public class Game {
 
     private long id;
     private String name;
+    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY)
+    private List<Team> teams = new ArrayList<>();
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

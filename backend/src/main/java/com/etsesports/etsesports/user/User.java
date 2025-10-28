@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Date;
 
 @Entity
@@ -36,29 +34,26 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    private LocalDate dob;
     private boolean isActive;
-    @Transient
-    private int age;
 
     public User() {
     }
 
-    public User(Long id, String username, String email, String passwordHash, String bio, boolean isActive, LocalDate dob) {
+    public User(Long id, String username, String email, String passwordHash, Role role, boolean isActive) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.role = role;
         this.isActive = isActive;
-        this.dob = dob;
     }
 
-    public User(String username, String email, String passwordHash, String bio, boolean isActive, LocalDate dob) {
+    public User(String username, String email, String passwordHash, Role role, boolean isActive) {
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.role = role;
         this.isActive = isActive;
-        this.dob = dob;
     }
 
     public Long getId() {
@@ -106,22 +101,6 @@ public class User {
         this.updatedAt = new Date();
     }
 
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
-    public int getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     @Override
     public String toString() {
         return "Users{" +
@@ -132,8 +111,6 @@ public class User {
                 ", isActive=" + isActive +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", dob=" + dob +
-                ", age=" + age +
                 '}';
     }
 }

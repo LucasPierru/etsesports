@@ -3,18 +3,21 @@ package com.etsesports.etsesports.game;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.List;
+import org.springframework.core.annotation.Order;
 
 @Configuration
 public class GameConfig {
 
     @Bean("gameDataLoader")
+    @Order(1)
     CommandLineRunner commandLineRunner (GameRepository gameRepository) {
         return args -> {
-            Game valorant = new Game("Valorant");
-            Game rocketLeague = new Game("Rocket League");
-            gameRepository.saveAll(List.of(valorant, rocketLeague));
+            createIfMissing(gameRepository, "Valorant");
+            createIfMissing(gameRepository, "Rocket League");
         };
+    }
+
+    private void createIfMissing(GameRepository gameRepository, String name) {
+        gameRepository.findByName(name).orElseGet(() -> gameRepository.save(new Game(name)));
     }
 }
