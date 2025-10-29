@@ -1,5 +1,6 @@
 package com.etsesports.etsesports.team;
 
+import com.etsesports.etsesports.coach.Coach;
 import com.etsesports.etsesports.game.Game;
 import com.etsesports.etsesports.player.Player;
 import jakarta.persistence.*;
@@ -33,6 +34,9 @@ public class Team {
 
     @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
     private List<Player> players = new ArrayList<>();
+
+    @OneToOne(mappedBy = "team", fetch = FetchType.LAZY)
+    private Coach coach;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -86,11 +90,30 @@ public class Team {
         this.name = name;
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
+    }
+
     @Override
     public String toString() {
         return "Team{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", game=" + game +
+                ", players=" + players +
+                ", coach=" + coach +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';

@@ -1,5 +1,6 @@
 package com.etsesports.etsesports.team;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,7 @@ public class TeamService {
         teamRepository.deleteById(teamId);
     }
 
+    @Transactional
     public void updateTeam (Long teamId, String name) {
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalStateException("Team with id " + teamId + " does not exist"));
         team.setName(name);

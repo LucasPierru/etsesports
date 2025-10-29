@@ -32,6 +32,6 @@ public class PlayerController {
 
     @PutMapping(path = "{playerId}")
     public void updatePlayer(@PathVariable("playerId") Long playerId, @RequestParam(required = false) String username){
-        playerService.updateTeam(playerId, username);
+        playerService.updatePlayer(playerId, username);
     }
 }

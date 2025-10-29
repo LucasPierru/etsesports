@@ -1,5 +1,6 @@
 package com.etsesports.etsesports.player;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,8 @@ public class PlayerService {
         playerRepository.deleteById(playerId);
     }
 
-    public void updateTeam (Long playerId, String username) {
+    @Transactional
+    public void updatePlayer (Long playerId, String username) {
         Player player = playerRepository.findById(playerId).orElseThrow(() -> new IllegalStateException("Player with id " + playerId + " does not exist"));
         player.setUsername(username);
     }
