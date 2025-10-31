@@ -138,13 +138,33 @@ DB_PASSWORD=
 | createdAt | Timestamp | Creation date |
 | updatedAt | Timestamp | Auto-generated |
 
+`School`
+| Field | Type | Description |
+| --------- | --------- | ------------------- |
+| id | UUID | Primary key |
+| name | String | School name |
+| createdAt | Timestamp | Creation date |
+| updatedAt | Timestamp | Auto-generated |
+
+`Opponent`
+| Field | Type | Description |
+| --------- | --------- | ------------------- |
+| id | UUID | Primary key |
+| name | String | Team name |
+| school | UUID | Reference to `School` |
+| createdAt | Timestamp | Creation date |
+| updatedAt | Timestamp | Auto-generated |
+
 `Match`
 | Field | Type | Description |
 | --------- | --------- | -------------------- |
 | id | UUID | Primary key |
-| opponent | String | Opponent's team name |
+| team | UUID | Reference to `Team` |
+| opponent | UUID | Reference to `Opponent` |
+| game | UUID | Reference to `Game` |
 | date | Timestamp | Match date |
-| result | String | Optional result info |
+| teamScore | Int | Team result |
+| opponentScore | Int | Opponent result |
 | createdAt | Timestamp | Auto-generated |
 | updatedAt | Timestamp | Auto-generated |
 
