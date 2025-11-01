@@ -20,7 +20,7 @@ public class School {
             generator = "schools_sequence"
     )
     private long id;
-    private long name;
+    private String name;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -29,4 +29,25 @@ public class School {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @PreUpdate
+    public void setUpdatedAt() {
+        this.updatedAt = new Date();
+    }
 }
