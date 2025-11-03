@@ -35,6 +35,21 @@ public class Opponent {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
+    public Opponent() {
+
+    }
+
+    public Opponent(Long id, String name, School school) {
+        this.id = id;
+        this.name = name;
+        this.school = school;
+    }
+
+    public Opponent(String name, School school) {
+        this.name = name;
+        this.school = school;
+    }
+
     public long getId() {
         return id;
     }

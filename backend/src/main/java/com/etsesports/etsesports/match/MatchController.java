@@ -3,7 +3,7 @@ package com.etsesports.etsesports.match;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -16,17 +16,17 @@ public class MatchController {
         this.matchService = matchService;
     }
 
-    @GetMapping()
-    public List<Match> getMatches() {
+    @GetMapping
+    public List<MatchDto> getMatches() {
         return matchService.getMatches();
     }
 
-    @PostMapping()
+    @PostMapping
     public void createMatch(@RequestBody Match match) {
         matchService.createMatch(match);
     }
 
-    @DeleteMapping(path = "{matchId]")
+    @DeleteMapping(path = "{matchId}")
     public void deleteMatch(@PathVariable("matchId") Long matchId) {
         matchService.deleteMatch(matchId);
     }
@@ -36,9 +36,9 @@ public class MatchController {
                             @RequestParam(required = false) Long teamId,
                             @RequestParam(required = false) Long opponentId,
                             @RequestParam(required = false) Long gameId,
-                            @RequestParam(required = false) Date date,
+                            @RequestParam(required = false) LocalDateTime dateTime,
                             @RequestParam(required = false) int teamScore,
                             @RequestParam(required = false) int opponentScore) {
-        matchService.updateMatch(matchId, teamId, opponentId, gameId, date, teamScore, opponentScore);
+        matchService.updateMatch(matchId, teamId, opponentId, gameId, dateTime, teamScore, opponentScore);
     }
 }

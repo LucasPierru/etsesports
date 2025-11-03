@@ -10,7 +10,6 @@ import org.springframework.core.annotation.Order;
 
 @Configuration
 public class TeamConfig {
-
     @Bean("teamDataLoader")
     @DependsOn("gameDataLoader")
     @Order(2)

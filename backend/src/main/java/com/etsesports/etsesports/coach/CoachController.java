@@ -15,12 +15,12 @@ public class CoachController {
         this.coachService = coachService;
     }
 
-    @GetMapping()
+    @GetMapping
     public List<Coach> getCoaches() {
         return coachService.getCoaches();
     }
 
-    @PostMapping()
+    @PostMapping
     public void createCoach(@RequestBody Coach coach) {
         coachService.createCoach(coach);
     }

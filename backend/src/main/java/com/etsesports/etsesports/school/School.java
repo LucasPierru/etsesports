@@ -30,6 +30,18 @@ public class School {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
+    public School() {
+    }
+
+    public School(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public School(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

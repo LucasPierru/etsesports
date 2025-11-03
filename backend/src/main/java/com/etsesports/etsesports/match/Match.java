@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -36,7 +37,7 @@ public class Match {
     @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
-    private Date date;
+    private LocalDateTime dateTime;
     private int teamScore;
     private int opponentScore;
 
@@ -47,6 +48,29 @@ public class Match {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    public Match() {
+
+    }
+
+    public Match(Long id, Team team, Opponent opponent, Game game, LocalDateTime dateTime, int teamScore, int opponentScore) {
+        this.id = id;
+        this.team = team;
+        this.opponent = opponent;
+        this.game = game;
+        this.dateTime = dateTime;
+        this.teamScore = teamScore;
+        this.opponentScore = opponentScore;
+    }
+
+    public Match(Team team, Opponent opponent, Game game, LocalDateTime dateTime, int teamScore, int opponentScore) {
+        this.team = team;
+        this.opponent = opponent;
+        this.game = game;
+        this.dateTime = dateTime;
+        this.teamScore = teamScore;
+        this.opponentScore = opponentScore;
+    }
 
     public long getId() {
         return id;
@@ -80,12 +104,12 @@ public class Match {
         this.game = game;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     public int getOpponentScore() {
@@ -109,6 +133,14 @@ public class Match {
         this.updatedAt = new Date();
     }
 
+    public Date getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return this.updatedAt;
+    }
+
     @Override
     public String toString() {
         return "Match{" +
@@ -116,7 +148,7 @@ public class Match {
                 ", team=" + team +
                 ", opponent=" + opponent +
                 ", game=" + game +
-                ", date=" + date +
+                ", dateTime=" + dateTime +
                 ", teamScore=" + teamScore +
                 ", opponentScore=" + opponentScore +
                 ", createdAt=" + createdAt +

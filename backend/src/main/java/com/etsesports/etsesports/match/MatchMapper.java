@@ -3,9 +3,10 @@ package com.etsesports.etsesports.match;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+@Mapper(componentModel = "spring")
 public interface MatchMapper {
-    @Mapping(source = "team.name", target = "teamName")
-    @Mapping(source = "opponent.name", target = "opponentName")
-    @Mapping(source = "game.location", target = "location")
+    @Mapping(source = "team.name", target = "team")
+    @Mapping(source = "opponent.name", target = "opponent")
+    @Mapping(source = "game.name", target = "game")
     MatchDto toDto(Match match);
 }

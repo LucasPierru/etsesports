@@ -15,12 +15,12 @@ public class SchoolController {
         this.schoolService = schoolService;
     }
 
-    @GetMapping()
+    @GetMapping
     public List<School> getSchools() {
         return schoolService.getSchools();
     }
 
-    @PostMapping()
+    @PostMapping
     public void createSchool(@RequestBody School school) {
         schoolService.createSchool(school);
     }

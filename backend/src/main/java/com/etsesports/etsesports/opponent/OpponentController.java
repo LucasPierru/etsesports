@@ -15,23 +15,23 @@ public class OpponentController {
         this.opponentService = opponentService;
     }
 
-    @GetMapping()
+    @GetMapping
     public List<Opponent> getOpponent() {
         return opponentService.getOpponents();
     }
 
-    @PostMapping()
+    @PostMapping
     public void createOpponent(@RequestBody Opponent opponent) {
         opponentService.createOpponent(opponent);
     }
 
     @DeleteMapping(path = "{opponentId}")
-    public void deleteCoach(@PathVariable("opponentId") Long opponentId) {
+    public void deleteOpponent(@PathVariable("opponentId") Long opponentId) {
         opponentService.deleteOpponent(opponentId);
     }
 
     @PutMapping(path = "{opponentId}")
-    public void updateCoach(@PathVariable("opponentId") Long opponentId, @RequestParam(required = false) String name, @RequestParam(required = false) Long schoolId) {
+    public void updateOpponent(@PathVariable("opponentId") Long opponentId, @RequestParam(required = false) String name, @RequestParam(required = false) Long schoolId) {
         opponentService.updateOpponent(opponentId, name, schoolId);
     }
 }

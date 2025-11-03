@@ -168,7 +168,7 @@ DB_PASSWORD=
 | createdAt | Timestamp | Auto-generated |
 | updatedAt | Timestamp | Auto-generated |
 
-`NewsPost`
+`Post`
 | Field | Type | Description |
 | --------- | --------- | ------------------- |
 | id | UUID | Primary key |

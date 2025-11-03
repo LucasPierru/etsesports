@@ -4,9 +4,11 @@ import com.etsesports.etsesports.school.School;
 import com.etsesports.etsesports.school.SchoolRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OpponentService {
     private final OpponentRepository opponentRepository;
     private final SchoolRepository schoolRepository;
