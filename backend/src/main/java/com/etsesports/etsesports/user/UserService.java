@@ -1,7 +1,12 @@
 package com.etsesports.etsesports.user;
 
+import com.etsesports.etsesports.auth.RegisterDto;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,24 +14,31 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService (UserRepository userRepository) {
+    public UserService (UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     public List<User> getUsers() {
         return userRepository.findAll();
     }
 
-    public void addNewUser(User user) {
-        Optional<User> userOptional = userRepository.findUserByEmail(user.getEmail());
+    public void addNewUser(RegisterDto registerDto) {
+        Optional<User> userOptional = userRepository.findUserByEmail(registerDto.email());
         if(userOptional.isPresent()) {
             throw new IllegalStateException("E-mail already exists");
         }
-        userRepository.save(user);
+        userRepository.save(new User(registerDto.username(), registerDto.email(), passwordEncoder.encode(registerDto.password()), Role.ADMIN, true));
     }
 
     public void deleteUser(Long userId) {

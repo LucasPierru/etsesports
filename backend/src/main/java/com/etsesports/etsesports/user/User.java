@@ -3,12 +3,16 @@ package com.etsesports.etsesports.user;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
 @Table(name = "\"users\"")
-public class User {
+public class User implements UserDetails {
     @Id
     @SequenceGenerator(
             name = "users_sequence",
@@ -22,7 +26,7 @@ public class User {
     private Long id;
     private String username;
     private String email;
-    private String passwordHash;
+    private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -39,21 +43,31 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String username, String email, String passwordHash, Role role, boolean isActive) {
+    public User(Long id, String username, String email, String password, Role role, boolean isActive) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.passwordHash = passwordHash;
+        this.password = password;
         this.role = role;
         this.isActive = isActive;
     }
 
-    public User(String username, String email, String passwordHash, Role role, boolean isActive) {
+    public User(String username, String email, String password, Role role, boolean isActive) {
         this.username = username;
         this.email = email;
-        this.passwordHash = passwordHash;
+        this.password = password;
         this.role = role;
         this.isActive = isActive;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return new ArrayList<>();
     }
 
     public Long getId() {
@@ -64,6 +78,7 @@ public class User {
         this.id = id;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -80,12 +95,8 @@ public class User {
         this.email = email;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isActive() {
@@ -107,7 +118,7 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", passwordHash='" + passwordHash + '\'' +
+                ", passwordHash='" + password + '\'' +
                 ", isActive=" + isActive +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
