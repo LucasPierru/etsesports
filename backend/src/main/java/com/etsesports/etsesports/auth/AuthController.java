@@ -1,6 +1,7 @@
 package com.etsesports.etsesports.auth;
 
-import com.etsesports.etsesports.user.UserService;
+import com.etsesports.etsesports.user.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,21 +9,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/auth") // A common base path for auth operations
+@RequestMapping(path = "/api/v1/auth") // A common base path for auth operations
 public class AuthController {
-    private final UserService userService; // Your custom service handling registration logic
+    private final AuthService authService;
+    private final JwtService jwtService;
 
-    public AuthController(UserService userService) {
-        this.userService = userService;
+    @Autowired
+    public AuthController(AuthService authService, JwtService jwtService) {
+        this.authService = authService;
+        this.jwtService = jwtService;
+
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody RegisterDto registerDto) {
-        try {
-            userService.addNewUser(registerDto);
-            return ResponseEntity.ok("User registered successfully!");
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
-        }
+    @PostMapping(path = "/register")
+    public ResponseEntity<User> registerUser(@RequestBody RegisterDto registerDto) {
+        System.out.println(registerDto);
+        User registeredUser = authService.signup(registerDto);
+        return ResponseEntity.ok(registeredUser);
+    }
+
+    @PostMapping(path = "/login")
+    public ResponseEntity<?> loginUser(@RequestBody LoginDto loginDto) {
+        User authenticatedUser = authService.authenticate(loginDto);
+
+        String jwtToken = jwtService.generateToken(authenticatedUser);
+
+        LoginResponse loginResponse = new LoginResponse();
+
+        loginResponse.setToken(jwtToken);
+        loginResponse.setExpiresIn(jwtService.getExpirationTime());
+
+        return ResponseEntity.ok(loginResponse);
     }
 }

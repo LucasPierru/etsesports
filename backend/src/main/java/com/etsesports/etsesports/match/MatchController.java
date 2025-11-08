@@ -22,8 +22,8 @@ public class MatchController {
     }
 
     @PostMapping
-    public void createMatch(@RequestBody Match match) {
-        matchService.createMatch(match);
+    public MatchDto createMatch(@RequestBody MatchCreateDto match) {
+        return matchService.createMatch(match);
     }
 
     @DeleteMapping(path = "{matchId}")

@@ -34,8 +34,18 @@ public class MatchService {
         return matchRepository.findAll().stream().map(matchMapper::toDto).toList();
     }
 
-    public void createMatch(Match match) {
-        matchRepository.save(match);
+    @Transactional
+    public MatchDto createMatch(MatchCreateDto match) {
+        Team team = teamRepository.findById(match.team())
+                .orElseThrow(() -> new RuntimeException("Team not found"));
+        Opponent opponent = opponentRepository.findById(match.opponent())
+                .orElseThrow(() -> new RuntimeException("Opponent not found"));
+        Game game = gameRepository.findById(match.game())
+                .orElseThrow(() -> new RuntimeException("Game not found"));
+
+        Match newMatch = matchRepository.save(new Match(team, opponent, game, match.dateTime(), match.teamScore(), match.opponentScore()));
+
+        return matchMapper.toDto(newMatch);
     }
 
     public void deleteMatch(Long matchId) {

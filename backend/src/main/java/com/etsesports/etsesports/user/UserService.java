@@ -3,6 +3,8 @@ package com.etsesports.etsesports.user;
 import com.etsesports.etsesports.auth.RegisterDto;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,6 +28,13 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User "+ username +" not found"));
+        GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().toString());
+
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), List.of(authority));
+    }
+
+    public User findUserByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
@@ -33,12 +42,12 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public void addNewUser(RegisterDto registerDto) {
+    public User addNewUser(RegisterDto registerDto) {
         Optional<User> userOptional = userRepository.findUserByEmail(registerDto.email());
         if(userOptional.isPresent()) {
             throw new IllegalStateException("E-mail already exists");
         }
-        userRepository.save(new User(registerDto.username(), registerDto.email(), passwordEncoder.encode(registerDto.password()), Role.ADMIN, true));
+       return  userRepository.save(new User(registerDto.username(), registerDto.email(), passwordEncoder.encode(registerDto.password()), Role.ADMIN, true));
     }
 
     public void deleteUser(Long userId) {
