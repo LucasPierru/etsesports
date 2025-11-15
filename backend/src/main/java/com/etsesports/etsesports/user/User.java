@@ -6,8 +6,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.Instant;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -31,12 +31,11 @@ public class User implements UserDetails {
     private Role role;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
+    private Instant updatedAt;
 
     private boolean isActive;
 
@@ -117,7 +116,7 @@ public class User implements UserDetails {
 
     @PreUpdate
     public void setUpdatedAt() {
-        this.updatedAt = new Date();
+        this.updatedAt = Instant.now();
     }
 
     @Override

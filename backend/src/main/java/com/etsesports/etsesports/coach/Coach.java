@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.Date;
+import java.time.Instant;
 
 @Entity
 @Table(name = "coaches")
@@ -32,12 +32,12 @@ public class Coach {
     private Team team;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
+    private Instant updatedAt;
+
 
     public Coach() {
 
@@ -80,7 +80,14 @@ public class Coach {
 
     @PreUpdate
     public void setUpdatedAt() {
-        this.updatedAt = new Date();
+        this.updatedAt = Instant.now();
     }
 
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
 }

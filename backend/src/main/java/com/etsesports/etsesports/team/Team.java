@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -39,12 +39,11 @@ public class Team {
     private Coach coach;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
+    private Instant updatedAt;
 
     public Game getGame() {
         return game;
@@ -71,7 +70,7 @@ public class Team {
 
     @PreUpdate
     public void setUpdatedAt() {
-        this.updatedAt = new Date();
+        this.updatedAt = Instant.now();
     }
 
     public long getId() {

@@ -5,9 +5,9 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 
 @Entity
 @Table(name = "players", uniqueConstraints = @UniqueConstraint(columnNames = {"username", "team_id"}))
@@ -37,12 +37,11 @@ public class Player {
     private String role;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
+    private Instant updatedAt;
 
     @Transient
     private int age;
@@ -132,7 +131,7 @@ public class Player {
 
     @PreUpdate
     public void setUpdatedAt() {
-        this.updatedAt = new Date();
+        this.updatedAt = Instant.now();
     }
 
     public long getId() {
