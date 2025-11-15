@@ -90,4 +90,10 @@ public class Coach {
     public Instant getUpdatedAt() {
         return updatedAt;
     }
+
+    @PrePersist
+    public void prePersist() {
+        if (createdAt == null) createdAt = Instant.now();
+        if (updatedAt == null) updatedAt = Instant.now();
+    }
 }

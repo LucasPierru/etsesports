@@ -119,6 +119,12 @@ public class User implements UserDetails {
         this.updatedAt = Instant.now();
     }
 
+    @PrePersist
+    public void prePersist() {
+        if (createdAt == null) createdAt = Instant.now();
+        if (updatedAt == null) updatedAt = Instant.now();
+    }
+
     @Override
     public String toString() {
         return "Users{" +

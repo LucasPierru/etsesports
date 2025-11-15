@@ -57,6 +57,12 @@ public class School {
         this.id = id;
     }
 
+    @PrePersist
+    public void prePersist() {
+        if (createdAt == null) createdAt = Instant.now();
+        if (updatedAt == null) updatedAt = Instant.now();
+    }
+
     @PreUpdate
     public void setUpdatedAt() {
         this.updatedAt = Instant.now();

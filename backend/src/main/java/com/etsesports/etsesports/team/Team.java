@@ -105,6 +105,12 @@ public class Team {
         this.coach = coach;
     }
 
+    @PrePersist
+    public void prePersist() {
+        if (createdAt == null) createdAt = Instant.now();
+        if (updatedAt == null) updatedAt = Instant.now();
+    }
+
     @Override
     public String toString() {
         return "Team{" +
