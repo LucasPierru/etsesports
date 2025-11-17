@@ -1,8 +1,8 @@
-package com.etsesports.etsesports.match;
+package com.etsesports.match;
 
-import com.etsesports.etsesports.game.Game;
-import com.etsesports.etsesports.opponent.Opponent;
-import com.etsesports.etsesports.team.Team;
+import com.etsesports.game.Game;
+import com.etsesports.opponent.Opponent;
+import com.etsesports.team.Team;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

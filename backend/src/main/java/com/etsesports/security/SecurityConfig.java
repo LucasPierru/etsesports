@@ -1,6 +1,6 @@
-package com.etsesports.etsesports.security;
+package com.etsesports.security;
 
-import com.etsesports.etsesports.user.UserRepository;
+import com.etsesports.user.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

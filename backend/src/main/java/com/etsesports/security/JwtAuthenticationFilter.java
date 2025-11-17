@@ -1,6 +1,6 @@
-package com.etsesports.etsesports.security;
+package com.etsesports.security;
 
-import com.etsesports.etsesports.auth.JwtService;
+import com.etsesports.auth.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

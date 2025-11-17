@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.security;
+package com.etsesports.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

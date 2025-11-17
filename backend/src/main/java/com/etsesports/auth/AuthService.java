@@ -1,7 +1,7 @@
-package com.etsesports.etsesports.auth;
+package com.etsesports.auth;
 
-import com.etsesports.etsesports.user.User;
-import com.etsesports.etsesports.user.UserService;
+import com.etsesports.user.model.User;
+import com.etsesports.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

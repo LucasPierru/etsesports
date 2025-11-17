@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.match;
+package com.etsesports.match;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

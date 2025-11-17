@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.school;
+package com.etsesports.school;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.school;
+package com.etsesports.school;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

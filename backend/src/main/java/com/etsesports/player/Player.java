@@ -1,6 +1,6 @@
-package com.etsesports.etsesports.player;
+package com.etsesports.player;
 
-import com.etsesports.etsesports.team.Team;
+import com.etsesports.team.Team;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

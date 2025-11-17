@@ -1,6 +1,6 @@
-package com.etsesports.etsesports.registration;
+package com.etsesports.registration;
 
-import com.etsesports.etsesports.game.Game;
+import com.etsesports.game.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

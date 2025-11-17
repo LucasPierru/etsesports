@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.user;
+package com.etsesports.user;
 
 public enum Role {
     ADMIN,

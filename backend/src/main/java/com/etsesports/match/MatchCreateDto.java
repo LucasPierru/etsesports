@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.match;
+package com.etsesports.match;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.auth;
+package com.etsesports.auth;
 
 public record LoginDto(String username, String password){
 }

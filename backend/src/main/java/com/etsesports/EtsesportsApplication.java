@@ -1,4 +1,4 @@
-package com.etsesports.etsesports;
+package com.etsesports;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

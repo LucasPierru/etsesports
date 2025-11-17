@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.auth;
+package com.etsesports.auth;
 
 public class LoginResponse {
     private String token;

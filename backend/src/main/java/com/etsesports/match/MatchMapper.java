@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.match;
+package com.etsesports.match;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

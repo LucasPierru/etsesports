@@ -1,6 +1,6 @@
-package com.etsesports.etsesports.auth;
+package com.etsesports.auth;
 
-import com.etsesports.etsesports.user.User;
+import com.etsesports.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

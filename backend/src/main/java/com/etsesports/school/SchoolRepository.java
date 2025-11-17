@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.school;
+package com.etsesports.school;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

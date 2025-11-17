@@ -1,6 +1,6 @@
-package com.etsesports.etsesports.post;
+package com.etsesports.post;
 
-import com.etsesports.etsesports.user.User;
+import com.etsesports.user.model.User;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

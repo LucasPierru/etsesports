@@ -1,6 +1,8 @@
-package com.etsesports.user;
+package com.etsesports.user.service;
 
 import com.etsesports.auth.RegisterDto;
+import com.etsesports.user.Role;
+import com.etsesports.user.model.User;
 import com.etsesports.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

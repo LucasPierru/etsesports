@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.school;
+package com.etsesports.school;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;

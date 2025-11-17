@@ -1,7 +1,7 @@
-package com.etsesports.etsesports.coach;
+package com.etsesports.coach;
 
-import com.etsesports.etsesports.team.Team;
-import com.etsesports.etsesports.user.User;
+import com.etsesports.team.Team;
+import com.etsesports.user.model.User;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

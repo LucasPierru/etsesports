@@ -1,6 +1,6 @@
-package com.etsesports.etsesports.player;
+package com.etsesports.player;
 
-import com.etsesports.etsesports.team.Team;
+import com.etsesports.team.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

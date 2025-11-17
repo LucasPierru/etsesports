@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.exceptions;
+package com.etsesports.exceptions;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;

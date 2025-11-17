@@ -1,11 +1,11 @@
-package com.etsesports.etsesports.match;
+package com.etsesports.match;
 
-import com.etsesports.etsesports.game.Game;
-import com.etsesports.etsesports.game.GameRepository;
-import com.etsesports.etsesports.opponent.Opponent;
-import com.etsesports.etsesports.opponent.OpponentRepository;
-import com.etsesports.etsesports.team.Team;
-import com.etsesports.etsesports.team.TeamRepository;
+import com.etsesports.game.Game;
+import com.etsesports.game.GameRepository;
+import com.etsesports.opponent.Opponent;
+import com.etsesports.opponent.OpponentRepository;
+import com.etsesports.team.Team;
+import com.etsesports.team.TeamRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

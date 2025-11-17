@@ -1,7 +1,7 @@
-package com.etsesports.etsesports.coach;
+package com.etsesports.coach;
 
-import com.etsesports.etsesports.team.Team;
-import com.etsesports.etsesports.team.TeamRepository;
+import com.etsesports.team.Team;
+import com.etsesports.team.TeamRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

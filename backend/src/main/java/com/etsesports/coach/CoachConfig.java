@@ -1,9 +1,9 @@
-package com.etsesports.etsesports.coach;
+package com.etsesports.coach;
 
-import com.etsesports.etsesports.team.Team;
-import com.etsesports.etsesports.team.TeamRepository;
-import com.etsesports.etsesports.user.User;
-import com.etsesports.etsesports.user.UserRepository;
+import com.etsesports.team.Team;
+import com.etsesports.team.TeamRepository;
+import com.etsesports.user.model.User;
+import com.etsesports.user.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

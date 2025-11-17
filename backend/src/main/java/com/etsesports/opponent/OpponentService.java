@@ -1,7 +1,7 @@
-package com.etsesports.etsesports.opponent;
+package com.etsesports.opponent;
 
-import com.etsesports.etsesports.school.School;
-import com.etsesports.etsesports.school.SchoolRepository;
+import com.etsesports.school.School;
+import com.etsesports.school.SchoolRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

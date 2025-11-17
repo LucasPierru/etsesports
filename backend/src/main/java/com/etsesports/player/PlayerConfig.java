@@ -1,7 +1,7 @@
-package com.etsesports.etsesports.player;
+package com.etsesports.player;
 
-import com.etsesports.etsesports.team.Team;
-import com.etsesports.etsesports.team.TeamRepository;
+import com.etsesports.team.Team;
+import com.etsesports.team.TeamRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

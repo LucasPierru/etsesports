@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.coach;
+package com.etsesports.coach;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

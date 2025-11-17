@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.opponent;
+package com.etsesports.opponent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

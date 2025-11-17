@@ -1,6 +1,6 @@
-package com.etsesports.etsesports.opponent;
+package com.etsesports.opponent;
 
-import com.etsesports.etsesports.school.School;
+import com.etsesports.school.School;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

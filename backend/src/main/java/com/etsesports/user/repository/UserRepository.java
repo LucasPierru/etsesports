@@ -1,5 +1,6 @@
-package com.etsesports.user;
+package com.etsesports.user.repository;
 
+import com.etsesports.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.auth;
+package com.etsesports.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

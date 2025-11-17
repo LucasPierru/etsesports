@@ -1,4 +1,4 @@
-package com.etsesports.etsesports.game;
+package com.etsesports.game;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

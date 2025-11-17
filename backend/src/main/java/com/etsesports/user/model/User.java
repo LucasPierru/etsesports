@@ -1,5 +1,6 @@
-package com.etsesports.user;
+package com.etsesports.user.model;
 
+import com.etsesports.user.Role;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
