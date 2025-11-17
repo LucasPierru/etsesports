@@ -1,6 +1,7 @@
-package com.etsesports.etsesports.user;
+package com.etsesports.user;
 
-import com.etsesports.etsesports.auth.RegisterDto;
+import com.etsesports.auth.RegisterDto;
+import com.etsesports.user.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,5 +1,6 @@
-package com.etsesports.etsesports.user;
+package com.etsesports.user;
 
+import com.etsesports.user.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
