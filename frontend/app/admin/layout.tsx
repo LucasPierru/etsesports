@@ -1,8 +1,7 @@
+import { AppSidebar } from "@/components/admin-sidebar/admin-sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/navbar/navbar";
-import Footer from "@/components/footer/footer";
 
 const instrumentSans = Instrument_Sans({
   variable: "--font-instrument-sans",
@@ -10,18 +9,22 @@ const instrumentSans = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "ETS Esports",
+  title: "ETS Esports Admin",
   description: "A platform for managing and organizing esports tournaments and events.",
 };
 
-export default function RootLayout({
+export default function AdminLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${instrumentSans.variable} antialiased overflow-auto h-screen`}>{children}</body>
-    </html>
+    <SidebarProvider>
+      <AppSidebar />
+      <main className="flex">
+        <SidebarTrigger />
+        {children}
+      </main>
+    </SidebarProvider>
   );
 }

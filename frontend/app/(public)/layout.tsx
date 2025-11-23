@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
-import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
 
@@ -14,14 +13,18 @@ export const metadata: Metadata = {
   description: "A platform for managing and organizing esports tournaments and events.",
 };
 
-export default function RootLayout({
+export default function PublicLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`${instrumentSans.variable} antialiased overflow-auto h-screen`}>{children}</body>
+      <body className={`${instrumentSans.variable} antialiased overflow-auto h-screen`}>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
